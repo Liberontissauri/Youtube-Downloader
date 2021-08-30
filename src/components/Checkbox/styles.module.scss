@@ -1,0 +1,28 @@
+@import "../../styles/vars.scss";
+
+.Checkbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color_secondary;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.13);
+    transition: background-color 0.3s ease;
+}
+.Checkbox:hover {
+    cursor: pointer;
+}
+.CheckboxInner {
+    transition: opacity 0.3s ease;
+    width: 35%;
+    height: 35%;
+    background-color: $color_primary;
+    box-shadow: 0px 0px 20px 1px $color_primary;
+    transition: opacity 0.1s ease-in;
+}
+.CheckboxInnerActive {
+    opacity: 1;
+}
+.CheckboxInnerInactive {
+    opacity: 0;
+}
