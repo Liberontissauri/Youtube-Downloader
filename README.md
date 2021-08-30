@@ -1,3 +1,13 @@
-# Youtube Downloader
+# DownTube
+DownTube is a video downloader for youtube written in typescript and React.
+## Supported Formats
+### Video
+- mp4
+- AVI
+- FLV
+- webm
 
-## In Progress...
+### Audio
+- mp3
+- ogg
+- wav
