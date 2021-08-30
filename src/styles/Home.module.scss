@@ -1,0 +1,112 @@
+@import "./vars.scss";
+
+.MainDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 0;
+}
+.Title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    margin: $margin_small;
+}
+.RedTitle {
+    color: $color_primary
+}
+.SubTitle {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: $color_text_secondary;
+    margin-bottom: $margin_big;
+}
+.InputURL {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    width: 80%;
+    max-width: 550px;
+    background-color: $color_secondary;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.13);
+    border: none;
+    border-radius: 11px;
+    padding: 15px 40px;
+    outline:none;
+    margin-bottom: $margin_medium;
+    transition: box-shadow 0.1s ease-in, transform 0.1s ease-in;
+}
+.InputURL:focus {
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.13);
+}
+.OnlyOptionsDiv {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    width: 80%;
+    margin-bottom: $margin_medium;
+}
+.OnlyVideoDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+.OnlyVideoLabel {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: $margin_small;
+}
+.OnlyAudioDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+.OnlyAudioLabel {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: $margin_small;
+}
+.QualityOptionsDiv {
+    margin-bottom: $margin_medium;
+}
+.BitrateOptionsDiv {
+    margin-bottom: $margin_big;
+}
+.DownloadButton {
+    padding: 15px 60px;
+    border: none;
+
+    background-color: $color_primary;
+
+    color: $color_background;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.13);
+
+    transition: box-shadow 0.1s ease-in, transform 0.1s ease-in;
+}
+.DownloadButton:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.205);
+}
