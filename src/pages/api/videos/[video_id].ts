@@ -52,9 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if(validateFormatVideo(format) || validateFormatAudio(format)) {
         res.setHeader('Content-Disposition', `attachment; filename=${"content."}${format}`);
         if(format == "mp4") 
-            return ffmpeg(video_stream).addOutputOptions('-movflags +frag_keyframe+separate_moof+omit_tfhd_offset+empty_moov')
-                .format(format)
-                .pipe(res);
+            return video_stream.pipe(res)
         
         return ffmpeg(video_stream)
         .format(format)
