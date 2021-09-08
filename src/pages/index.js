@@ -3,6 +3,7 @@ import Select from "react-select";
 import styles from '../styles/Home.module.scss'
 import Checkbox from "../components/Checkbox"
 import { useRouter } from 'next/router'
+import { getVideoID } from 'ytdl-core';
 
 export default function Home() {
   const [video_id, setVideoId] = useState("")
@@ -64,7 +65,7 @@ export default function Home() {
     }
   }
   async function transferVideo() {
-    const parsed_video_id = video_id.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    const parsed_video_id = getVideoID(video_id).replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
     let format = "mp4";
     if(audio_only) format = "mp3"
     window.open(`/api/videos/${parsed_video_id}?video_only=${video_only}&audio_only=${audio_only}&bitrate=${bitrate}&quality=${quality}&format=${format}`, "_blank")
