@@ -2,10 +2,15 @@ import { useState } from 'react'
 import Select from "react-select";
 import styles from '../styles/Home.module.scss'
 import Checkbox from "../components/Checkbox"
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const [video_id, setVideoId] = useState("")
   const [video_only, setVideoOnly] = useState(false);
   const [audio_only, setAudioOnly] = useState(false);
+  const [quality, setQuality] = useState("720p")
+  const [bitrate, setBitrate] = useState(128)
+  const router = useRouter()
 
   const QUALITY_OPTIONS = [
     { value: "144p", label: '144p' },
@@ -58,28 +63,30 @@ export default function Home() {
       return { ...provided, opacity, transition};
     }
   }
+  async function transferVideo() {
+    const parsed_video_id = video_id.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    let format = "mp4";
+    if(audio_only) format = "mp3"
+    window.open(`/api/videos/${parsed_video_id}?video_only=${video_only}&audio_only=${audio_only}&bitrate=${bitrate}&quality=${quality}&format=${format}`, "_blank")
+  }
   return (
     <div className={styles.MainDiv}>
       <h1 className={styles.Title}>Down<span className={styles.RedTitle}>Tube</span></h1>
       <h2 className={styles.SubTitle}>Download videos in a flash</h2>
-      <input className={styles.InputURL} placeholder="insert video url...."></input>
+      <input className={styles.InputURL} placeholder="insert video url...." onChange={(e) => setVideoId(e.target.value)}></input>
       <div className={styles.OnlyOptionsDiv}>
-        <div className={styles.OnlyVideoDiv}>
-          <label className={styles.OnlyVideoLabel}>Video Only</label>
-          <Checkbox size={40} active={video_only} onClick={()=>setVideoOnly(!video_only)}></Checkbox>
-        </div>
         <div className={styles.OnlyAudioDiv}>
           <label className={styles.OnlyAudioLabel}>Audio Only</label>
           <Checkbox size={40} active={audio_only} onClick={()=>setAudioOnly(!audio_only)}></Checkbox>
         </div>
       </div>
       <div className={styles.QualityOptionsDiv}>
-        <Select isDisabled={audio_only} isSearchable={false} placeholder="Video Quality" styles={customStyles} options={QUALITY_OPTIONS}></Select>
+        <Select onChange={(option) => setQuality(option.value)} isDisabled={audio_only} isSearchable={false} placeholder="Video Quality" styles={customStyles} options={QUALITY_OPTIONS}></Select>
       </div>
       <div className={styles.BitrateOptionsDiv}>
-        <Select isDisabled={video_only} isSearchable={false} placeholder="Audio Bitrate" styles={customStyles} options={BITRATE_OPTIONS}></Select>
+        <Select onChange={(option) => setBitrate(option.value)} isDisabled={video_only} isSearchable={false} placeholder="Audio Bitrate" styles={customStyles} options={BITRATE_OPTIONS}></Select>
       </div>
-      <button className={styles.DownloadButton}>
+      <button className={styles.DownloadButton} onClick={transferVideo}>
         Download Video
       </button>
     </div>
