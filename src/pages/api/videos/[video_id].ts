@@ -72,7 +72,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     Promise.all([video_write_promise, audio_write_promise]).then(() => {
         if(format == "mp3") {
             return ffmpeg("./temp/" + audio_file_name)
-            .on("start", cmd => console.log(cmd))
             .input("./temp/" + audio_file_name)
             .save("./temp/" + final_file_name)
             .on("end", () => {
