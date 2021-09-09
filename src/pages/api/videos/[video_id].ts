@@ -49,22 +49,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const video_stream = getVideoStream(video_id, quality);
     const audio_stream = getAudioStream(video_id, audioBitrate);
-    const video_file_name = uuidv4() + ".mp4"
+    const video_file_name: String = uuidv4() + ".mp4"
     fs.closeSync(fs.openSync("./temp/" + video_file_name, 'w'));
     const video_write_stream = fs.createWriteStream("./temp/" + video_file_name)
     pipeline(video_stream, video_write_stream, (err) => {if (err) console.log(err)})
-    const audio_file_name = uuidv4() + ".mp4"
+    const audio_file_name: String = uuidv4() + ".mp4"
     fs.closeSync(fs.openSync("./temp/" + audio_file_name, 'w'));
     const audio_write_stream = fs.createWriteStream("./temp/" + audio_file_name)
     pipeline(audio_stream, audio_write_stream, (err) => {if (err) console.log(err)})
 
-    const final_file_name = uuidv4() + "." + format
+    const final_file_name: String = uuidv4() + "." + format
 
-    const video_write_promise = new Promise(function(resolve, reject) {
+    const video_write_promise: Promise<any> = new Promise(function(resolve, reject) {
         video_write_stream.on("finish", resolve)
         video_write_stream.on("error", reject)
     })
-    const audio_write_promise = new Promise(function(resolve, reject) {
+    const audio_write_promise: Promise<any> = new Promise(function(resolve, reject) {
         audio_write_stream.on("finish", resolve)
         audio_write_stream.on("error", reject)
     })
