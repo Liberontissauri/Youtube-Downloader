@@ -22,8 +22,8 @@ export default function Home() {
     { value: "1080p", label: '1080p' },
   ]
   const BITRATE_OPTIONS = [
-    { value: 96, label: "96"},
-    { value: 128, label: 128}
+    { value: 96, label: "Medium (May not be available)"},
+    { value: 128, label: "High"}
   ]
   const customStyles = {
     container: (provided) => ({
@@ -85,7 +85,7 @@ export default function Home() {
         <Select onChange={(option) => setQuality(option.value)} isDisabled={audio_only} isSearchable={false} placeholder="Video Quality" styles={customStyles} options={QUALITY_OPTIONS}></Select>
       </div>
       <div className={styles.BitrateOptionsDiv}>
-        <Select onChange={(option) => setBitrate(option.value)} isDisabled={video_only} isSearchable={false} placeholder="Audio Bitrate" styles={customStyles} options={BITRATE_OPTIONS}></Select>
+        <Select onChange={(option) => setBitrate(option.value)} isDisabled={video_only} isSearchable={false} placeholder="Audio Quality" styles={customStyles} options={BITRATE_OPTIONS}></Select>
       </div>
       <button className={styles.DownloadButton} onClick={transferVideo}>
         Download Video
