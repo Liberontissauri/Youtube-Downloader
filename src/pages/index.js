@@ -29,6 +29,9 @@ export default function Home() {
     container: (provided) => ({
       ...provided,
       cursor: "pointer",
+      fontFamily: "Montserrat",
+      fontSize: "15px",
+      fontWeight: "400",
     }),
     placeholder: (provided) => ({
       ...provided,
